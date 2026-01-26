@@ -88,6 +88,12 @@ item11,
 item12
 ];
 
-
+return( 
+   <div>
+    {items.map((item, index) => (
+      <Item key = {index} name={item.name} quantity={item.quantity} category={item.category} />
+    ))}
+  </div>
+  );
 
 }
