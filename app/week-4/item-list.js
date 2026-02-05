@@ -1,6 +1,6 @@
 
-import Item from "./item.js";
-import jsonItems from "./items.json";
+import Item from "./items";
+import jsonItems from "./item.json";
 
 export default function ItemList(){
 

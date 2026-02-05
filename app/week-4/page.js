@@ -1,3 +1,12 @@
+import ItemList from "./item-list";
+
 export default function Page(){
-  return(<h1>Week 4 Assignment Page</h1>);
+  return(
+    <main>
+      <h1>Shopping List</h1>
+      <ItemList/>
+    </main>
+
+
+  );
 }
