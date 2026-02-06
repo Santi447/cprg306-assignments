@@ -2,14 +2,16 @@
 import Item from "./items";
 import jsonItems from "./item.json";
 
+
+
 export default function ItemList(){
 
   return(
-      <div>
+      <ol className="mx-auto flex w-full max-w-2xl flex-col gap-3 p-4">
         {jsonItems.map(items =>(
-          <Item key={items.id} name={items.name} quantity={items.quantity} category={items.category}/>
+          <Item key={items.id} {...items}/>
         ))}
-      </div>
+      </ol>
 
   );
   
