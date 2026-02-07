@@ -3,73 +3,87 @@
     "id": "1h2GJKH12gkHG31h1H",
     "name": "milk, 4 L 🥛",
     "quantity": 1,
-    "category": "dairy"
-  },
+    "category": "dairy",
+    "imageUrl": "https://images.pexels.com/photos/3735209/pexels-photo-3735209.jpeg"
+    },
   {
     "id": "2KJH3k2j3H1k2J3K1H",
     "name": "bread 🍞",
     "quantity": 2,
-    "category": "bakery"
+    "category": "bakery",
+    "imageUrl": "https://images.pexels.com/photos/103676/pexels-photo-103676.jpeg"
+
   },
   {
     "id": "3h2KJH3k2j3H1k2J3",
     "name": "eggs, dozen 🥚",
     "quantity": 2,
-    "category": "dairy"
+    "category": "dairy",
+    "imageUrl": "https://images.pexels.com/photos/17903969/pexels-photo-17903969.jpeg"
+    
   },
   {
     "id": "4k2J3K1H2GJKH12gk",
     "name": "bananas 🍌",
     "quantity": 6,
-    "category": "produce"
+    "category": "produce",
+    "imageUrl": "https://images.pexels.com/photos/1093038/pexels-photo-1093038.jpeg"
   },
   {
     "id": "5H1h1H2KJH3k2j3H",
     "name": "broccoli 🥦",
     "quantity": 3,
-    "category": "produce"
+    "category": "produce",
+    "imageUrl": "https://images.pexels.com/photos/9893179/pexels-photo-9893179.jpeg"
   },
   {
     "id": "6H1k2J3K1H2GJKH1",
     "name": "chicken breasts, 1 kg 🍗",
     "quantity": 1,
-    "category": "meat"
+    "category": "meat",
+    "imageUrl": "https://images.pexels.com/photos/5769373/pexels-photo-5769373.jpeg"
   },
   {
     "id": "7gkHG31h1H2KJH3k",
     "name": "pasta sauce 🍝",
     "quantity": 3,
-    "category": "canned goods"
+    "category": "canned goods",
+    "imageUrl": "https://images.pexels.com/photos/34160457/pexels-photo-34160457.jpeg"
   },
   {
     "id": "8j3H1k2J3K1H2GJK",
     "name": "spaghetti, 454 g 🍝",
     "quantity": 2,
-    "category": "dry goods"
+    "category": "dry goods",
+    "imageUrl": "https://images.pexels.com/photos/4039693/pexels-photo-4039693.jpeg"
   },
   {
     "id": "9H12gkHG31h1H2KJ",
     "name": "toilet paper, 12 pack 🧻",
     "quantity": 1,
-    "category": "household"
+    "category": "household",
+    "imageUrl": "https://images.pexels.com/photos/3958197/pexels-photo-3958197.jpeg"
   },
   {
     "id": "10H3k2j3H1k2J3K1",
     "name": "paper towels, 6 pack",
     "quantity": 1,
-    "category": "household"
+    "category": "household",
+    "imageUrl": "https://images.pexels.com/photos/11091978/pexels-photo-11091978.jpeg"
   },
   {
     "id": "11k2J3K1H2GJKH12",
     "name": "dish soap 🍽️",
     "quantity": 1,
-    "category": "household"
+    "category": "household",
+    "imageUrl": "https://images.pexels.com/photos/7492926/pexels-photo-7492926.jpeg"
   },
   {
     "id": "12GJKH12gkHG31h1",
     "name": "hand soap 🧼",
     "quantity": 4,
-    "category": "household"
+    "category": "household",
+    "imageUrl": "https://images.pexels.com/photos/7814648/pexels-photo-7814648.jpeg"
   }
 ]
  
