@@ -2,7 +2,7 @@ import NewItem from './newItem.js'
 
 export default function Page(){
     return(
-        <main>
+        <main className='bg-slate-900 min-h-screen'>
         <NewItem/>
         </main>
     )
