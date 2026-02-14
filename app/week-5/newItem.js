@@ -18,7 +18,7 @@ export default function NewItem() {
     }
 
     return(
-        <form onSubmit={handleSubmit} className="items-center flex flex-col gap-5 bg-black">
+        <form onSubmit={handleSubmit} className="items-center flex flex-col gap-5 ">
             <h1 className="text-2xl font-bold text-white absolute top-10">Add New Grocery Item</h1>
             <label className="block mb-2.5 text-sm font-medium text-heading mt-30"> Enter name
               <input
