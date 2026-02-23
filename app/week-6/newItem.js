@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";  
 
-export default function NewItem() {
+export default function NewItem({onAddItem}) {
 
     const [name, setName] = useState("");
     const [quantity, setQuantity] =useState(1);
@@ -9,12 +9,15 @@ export default function NewItem() {
 
     function handleSubmit(event){
         event.preventDefault();
-        const item = {name, quantity, category};
+        const id = Math.random().toString(36).substring(2, 9);
+        const item = {id, name, quantity, category};
         console.log(item);
-        alert(`added:${name}\nquantity: ${quantity}\ncategory: ${category}`);
+        // alert(`added:${name}\nquantity: ${quantity}\ncategory: ${category}`);
+        onAddItem(item);
         setName("");
         setQuantity(1);
-        setCategory("produce");       
+        setCategory("produce"); 
+              
     }
 
     return(
@@ -22,6 +25,7 @@ export default function NewItem() {
             <h1 className="text-2xl font-bold text-white absolute top-10">Add New Grocery Item</h1>
             <label className="block mb-2.5 text-sm font-medium text-heading mt-30"> Enter name
               <input
+              id="name"
               type="text"
               value={name}
               onChange={(element)=> {setName(element.target.value)}}
@@ -32,6 +36,7 @@ export default function NewItem() {
             <div className="flex flex-row  gap-10"> 
             <label> Enter quantity
               <input
+              id="quantity"
               type="number"
               value={quantity}
               min={1}
