@@ -6,23 +6,23 @@ export default function NewItem({onAddItem}) {
     const [name, setName] = useState("");
     const [quantity, setQuantity] =useState(1);
     const [category, setCategory] = useState("produce");
+    const [imageUrl, setImageUrl] = useState("");
 
     function handleSubmit(event){
         event.preventDefault();
         const id = Math.random().toString(36).substring(2, 9);
-        const item = {id, name, quantity, category};
+        const item = {id, name, quantity, category, imageUrl};
         console.log(item);
         // alert(`added:${name}\nquantity: ${quantity}\ncategory: ${category}`);
         onAddItem(item);
         setName("");
         setQuantity(1);
-        setCategory("produce"); 
-              
+        setCategory("produce");
+        setImageUrl("");
     }
 
     return(
         <form onSubmit={handleSubmit} className="items-center flex flex-col gap-5 ">
-            <h1 className="text-2xl font-bold text-white absolute top-10">Add New Grocery Item</h1>
             <label className="block mb-2.5 text-sm font-medium text-heading mt-30"> Enter name
               <input
               id="name"
@@ -66,6 +66,16 @@ export default function NewItem({onAddItem}) {
               </select>
             </label>
                 </div>
+            <label> Enter ImageUrl
+              <input
+              id="imageUrl"
+              type="text"
+              value={imageUrl}
+              placeholder="URL from pexels.com only!"
+              onChange={(element)=> {setImageUrl(element.target.value)}}
+              className="bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+              />
+            </label>
             <button type="submit" className=" bg-blue-600 p-5 w-15 rounded-md text-white hover:bg-blue-400 active:bg-blue-800">+</button>
         </form>
     );
