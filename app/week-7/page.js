@@ -12,8 +12,10 @@ export default function Page(){
   return(
     <main className='bg-slate-950 min-h-screen'>
     <h1 className='text-4xl text-center text-white py-10'>Shopping List</h1>
-      <div>
+      <div className = "flex justify-center">
       <NewItem onAddItem={handleAddItem} />
+      </div>
+      <div className=" flex justify-center">
       <ItemList items={items} />
     </div>
     </main>

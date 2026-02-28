@@ -1,11 +1,35 @@
 "use client";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { useState } from "react";  
+
+const CATEGORIES = [
+  "Produce",
+  "Dairy",
+  "Bakery",
+  "Meat",
+  "Frozen foods",
+  "Canned goods",
+  "Dry goods",
+  "Beverages",
+  "Snacks",
+  "Household",
+  "Other"
+]
 
 export default function NewItem() {
 
     const [name, setName] = useState("");
     const [quantity, setQuantity] =useState(1);
     const [category, setCategory] = useState("produce");
+    const [imageUrl, setImageUrl]= useState("");
 
     function handleSubmit(event){
         event.preventDefault();
@@ -18,50 +42,70 @@ export default function NewItem() {
     }
 
     return(
+      <Card className="w-full max-w-sm ">
+        <CardHeader>
+          <CardTitle>Enter new Item</CardTitle>
+          <CardDescription>
+            Enter Grocery Item to the list of available items
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
         <form onSubmit={handleSubmit} className="items-center flex flex-col gap-5 ">
-            <h1 className="text-2xl font-bold text-white absolute top-10">Add New Grocery Item</h1>
-            <label className="block mb-2.5 text-sm font-medium text-heading mt-30"> Enter name
+            <label htmlFor="name" className="mb-2.5 text-sm font-medium text-heading "> Enter name
               <input
               type="text"
+              id="name"
               value={name}
               onChange={(element)=> {setName(element.target.value)}}
+              placeholder="Enter New Grocery Item"
               required={false}
-              className="p-2 rounded-md bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+              className="p-2 rounded-md bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body text-white"
               />
             </label>
             <div className="flex flex-row  gap-10"> 
-            <label> Enter quantity
+            <label htmlFor="quantity" className="text-sm font-medium text-heading "> Enter quantity
               <input
               type="number"
               value={quantity}
               min={1}
               max={99}
               onChange={(element)=> {setQuantity(Number(element.target.value))}}
-              className="bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+              className="rounded-md bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body text-white"
               
               />
             </label>            
-            <label> Enter category:
+            <label htmlFor="category"> Enter category:
               <select
               value={category}
+              id="category"
               onChange={(element) => setCategory(element.target.value)}
-              className="bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+              className=" rounded-md bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body text-white"
               >
-                <option value="produce">Produce</option>
-                <option value="dairy">Dairy</option>
-                <option value="bakery">Bakery</option>
-                <option value="meat">Meat</option>
-                <option value="frozen foods">Frozen Foods</option>
-                <option value="canned goods">Canned Goods</option>
-                <option value="dry goods">Dry Goods</option>
-                <option value="beverages">Beverages</option>
-                <option value="snacks">Snacks</option>
-                <option value="household">Household</option>
-                <option value="other">Other</option>
+                {CATEGORIES.map(cat => (
+                  <option key={cat} value={cat.toLowerCase()}>
+                    {cat}
+                  </option>
+                ))}
               </select>
             </label>
                 </div>
-            <button type="submit" className=" bg-blue-600 p-5 w-15 rounded-md text-white hover:bg-blue-400 active:bg-blue-800">+</button>
+            <label htmlFor="imageUrl"> 
+              Enter ImageUrl
+              <input
+              id="imageUrl"
+              type="text"
+              value={imageUrl}
+              placeholder="URL from pexels.com only!"
+              onChange={(element)=> {setImageUrl(element.target.value)}}
+              className="rounded-md bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body text-white"
+              />
+            </label>
+            {/* <button type="submit" className=" bg-blue-600 p-5 w-15 rounded-md text-white hover:bg-blue-400 active:bg-blue-800">+</button> */}
         </form>
+        </CardContent>
+        <CardFooter>
+          <button type="submit" className=" bg-blue-600 p-5 w-full rounded-md text-white hover:bg-blue-400 active:bg-blue-800">Add Grocery Items</button>
+        </CardFooter>
+        </Card>
     );
 }
