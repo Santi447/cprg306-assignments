@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useState } from "react";  
+import Item from "./items";
 
 const CATEGORIES = [
   "Produce",
@@ -26,10 +27,17 @@ const CATEGORIES = [
 
 export default function NewItem() {
 
-    const [name, setName] = useState("");
-    const [quantity, setQuantity] =useState(1);
-    const [category, setCategory] = useState("produce");
-    const [imageUrl, setImageUrl]= useState("");
+    // const [name, setName] = useState("");
+    // const [quantity, setQuantity] =useState(1);
+    // const [category, setCategory] = useState("produce");
+    // const [imageUrl, setImageUrl]= useState("");
+    const [item, setItem] = useState({
+      name: "",
+      quantity: 1,
+      category: "produce",
+      imageUrl: "",
+    });
+
 
     function handleSubmit(event){
         event.preventDefault();
@@ -55,7 +63,7 @@ export default function NewItem() {
               <input
               type="text"
               id="name"
-              value={name}
+              value={Item.name}
               onChange={(element)=> {setName(element.target.value)}}
               placeholder="Enter New Grocery Item"
               required={false}
@@ -66,7 +74,7 @@ export default function NewItem() {
             <label htmlFor="quantity" className="text-sm font-medium text-heading "> Enter quantity
               <input
               type="number"
-              value={quantity}
+              value={item.quantity}
               min={1}
               max={99}
               onChange={(element)=> {setQuantity(Number(element.target.value))}}
@@ -76,7 +84,7 @@ export default function NewItem() {
             </label>            
             <label htmlFor="category"> Enter category:
               <select
-              value={category}
+              value={item.category}
               id="category"
               onChange={(element) => setCategory(element.target.value)}
               className=" rounded-md bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body text-white"
@@ -94,7 +102,7 @@ export default function NewItem() {
               <input
               id="imageUrl"
               type="text"
-              value={imageUrl}
+              value={item.imageUrl}
               placeholder="URL from pexels.com only!"
               onChange={(element)=> {setImageUrl(element.target.value)}}
               className="rounded-md bg-neutral-900 border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body text-white"
