@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return(
   <main>
-    <h1>CPRG 306: Web Development 2 - Assignments</h1>
+    <h1 className="text-white">CPRG 306: Web Development 2 - Assignments</h1>
     <ul className="my-2 mx-6">
       <li className="my-2 bg-stone-300 dark:bg-stone-600 p-4 rounded-xl">
         <p>
