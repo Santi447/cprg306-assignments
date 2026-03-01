@@ -10,7 +10,7 @@ export default function Page(){
     setItems([...items, newItem]);
   }
   return(
-    <main className='bg-slate-950 min-h-screen'>
+    <main className='bg-slate-950 min-h-screen text-white'>
     <h1 className='text-4xl text-center text-white py-10'>Shopping List</h1>
       <div>
       <NewItem onAddItem={handleAddItem} />
