@@ -1,6 +1,15 @@
 "use client";
-import {useState} from "react";
-import {useEffect} from "react";
+import {useState, useEffect} from "react";
+import {
+  Card,
+  CardAction,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+// import { Badge } from "@/components/ui/badge"
+// import { Button } from "@/components/ui/button"
 
  async function fetchMealIdeas(ingredient) {
   try{
@@ -25,16 +34,31 @@ export default function MealIdeas({ingredient}) {
     setMealIdeas(result);
   };
   useEffect(() => {
+    if(ingredient){
     loadMealIdeas();
+    }
   }, [ingredient]);
+
   return(
     <div>
       <h2>Meal Ideas</h2>
       <ul>
         {mealIdeas.map(meal =>(
-          <li key={meal.idMeal} className="text-white">
-            {meal.strMeal}
-          <img src={meal.strMealThumb} height={150} width={150} alt={meal.strMeal}/>
+          <li key={meal.idMeal} className="text-white m-4">
+            {/* {meal.strMeal}
+          <img src={meal.strMealThumb} height={150} width={150} alt={meal.strMeal}/> */}
+          <Card className="relative mx-auto w-full max-w-sm pt-0 overflow-hidden">
+            <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
+            <img src={meal.strMealThumb}  alt={meal.strMeal} className="relative z-20 aspect-video w-full object-cover"/>
+            <CardHeader>
+              <CardTitle className="text-white">{meal.strMeal}</CardTitle>
+            </CardHeader>
+            <CardFooter>
+              <button className="w-full bg-blue-600 text-white hover:bg-blue-700">View Recipe</button>
+        {/* <Button className="w-full">View Event</Button> */}
+      </CardFooter>
+          </Card>
+
           </li>
         ))}
       </ul>
