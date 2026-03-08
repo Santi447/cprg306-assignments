@@ -23,15 +23,15 @@ export default function Page(){
   return(
     <main className='bg-slate-950 min-h-screen'>
     <h1 className='text-4xl text-center text-white py-10'>Shopping List</h1>
-      <div className = "flex justify-center">
+    <div className="flex flex-row justify-center">
+      <div className = "flex flex-col items-center">
       <NewItem onAddItem={handleAddItem} />
-      </div>
-      <div className=" flex justify-center">
       <ItemList items={items} onItemSelect={handleItemSelected} />
     </div>
     <div>
       <h2 className="text-2xl text-center text-white py-10">Meal Ideas</h2>
       <MealIdeas ingredient={selectedItemName}/>
+    </div>
     </div>
     </main>
   );
