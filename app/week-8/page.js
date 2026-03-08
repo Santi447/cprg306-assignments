@@ -28,10 +28,12 @@ export default function Page(){
       <NewItem onAddItem={handleAddItem} />
       <ItemList items={items} onItemSelect={handleItemSelected} />
     </div>
-    <div>
-      <h2 className="text-2xl text-center text-white py-10">Meal Ideas</h2>
-      <MealIdeas ingredient={selectedItemName}/>
-    </div>
+    {selectedItemName && (
+      <div>
+        <h2 className="text-2xl text-center text-white py-10">Meal Ideas</h2>
+        <MealIdeas ingredient={selectedItemName}/>
+      </div>
+    )}
     </div>
     </main>
   );
