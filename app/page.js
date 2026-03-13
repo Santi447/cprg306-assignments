@@ -61,7 +61,15 @@ export default function Home() {
         Go to Week 8
         </Link>
         </p>
-      </li>   
+      </li>  
+        <li className="my-2 bg-stone-300 dark:bg-stone-600 p-4 rounded-xl">
+        <p>
+        <Link href="week-9"
+              className="hover:text-blue-600 dark:hover:text-blue-300  duration-300 ease-linear">
+        Go to Week 9
+        </Link>
+        </p>
+      </li>  
     </ul>
   </main>
   );

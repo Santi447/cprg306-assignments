@@ -4,8 +4,10 @@ import NewItem from "./newItem";
  import MealIdeas from "./mealIdeas";
 import itemsData from "./item.json";
 import { useState } from "react";
+import { useUserAuth } from "../../context/AuthContext";
 
 export default function Page(){
+  const { user} = useUserAuth();
   const [items, setItems] = useState(itemsData);
   const [selectedItemName, setSelectedItemName] = useState("");
   const handleAddItem = (newItem) => {
@@ -20,6 +22,13 @@ export default function Page(){
     console.log(transformName[0].trim())
     setSelectedItemName(transformName[0].trim());
   };
+  if (!user){
+    return(
+      <div className="bg-slate-950 min-h-screen flex flex-col items-center justify-center">
+        <h1 className="text-4xl text-center text-white py-10">Please log in to view your shopping list</h1>
+      </div>
+    )
+  }
   return(
     <main className='bg-slate-950 min-h-screen'>
     <h1 className='text-4xl text-center text-white py-10'>Shopping List</h1>
