@@ -58,7 +58,7 @@ if (!user){
     <p className="text-white">
       not logged in yet
     </p>
-    {error && <div className="text-white"> error.message</div>}
+    {error && <div className="text-white"> {error.message}</div>}
     {success && <div className="text-white"> Signed in successfully</div>}
     <button disabled={loading} onClick={handleLogin} className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md">
       {loading ? "Signing in..." : "Github"}
