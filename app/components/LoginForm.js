@@ -80,10 +80,10 @@ export default function LoginForm(){
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <button className="bg-white text-black w-full border rounded-md">Login</button>
+        <button className="bg-white text-black w-full border rounded-md hover:bg-gray-500">Login</button>
         {error && <div className="text-white"> {error.message}</div>}
         {success && <div className="text-white"> Signed in successfully</div>}
-        <button disabled={loading} onClick={handleLogin} className="text-white w-full border rounded-md">{loading? "Logging in..." : "Login with Github"} </button>
+        <button disabled={loading} onClick={handleLogin} className="text-white w-full border rounded-md hover:bg-gray-600">{loading? "Logging in..." : "Login with Github"} </button>
       </CardFooter>
     </Card>
   );
