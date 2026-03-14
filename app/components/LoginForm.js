@@ -1,3 +1,6 @@
+"use client";
+import { useUserAuth } from "../context/AuthContext";
+import { useState } from "react";
 import {
   Card,
   CardAction,
@@ -11,10 +14,32 @@ import {useRouter} from "next/navigation";
 
 export default function LoginForm(){
   const router = useRouter();
+  const { user, gitHubSignIn,} = useUserAuth();
+  const [success, setsuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  async function handleLogin() {
+  setLoading(true);
+  setsuccess(false);
+  try{
+       await gitHubSignIn();
+       setsuccess(true);
+       router.push("/week-9/shopping-list");
+
+  }
+  catch(error){
+      setError(error);
+      setsuccess(false);
+      
+  }
+  finally{
+    setLoading(false);
+  }
+}
   return(
     <Card className="w-full max-w-sm text-white">
       <CardHeader>
-        <CardTitle>Login</CardTitle>
+        <CardTitle>Login to your account</CardTitle>
         <CardDescription>
           Enter your email below to login to your account
         </CardDescription>
@@ -55,14 +80,11 @@ export default function LoginForm(){
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <button className="text-white w-full border rounded-md">Login with Github</button>
+        <button className="bg-white text-black w-full border rounded-md">Login</button>
+        {error && <div className="text-white"> {error.message}</div>}
+        {success && <div className="text-white"> Signed in successfully</div>}
+        <button disabled={loading} onClick={handleLogin} className="text-white w-full border rounded-md">{loading? "Logging in..." : "Login with Github"} </button>
       </CardFooter>
     </Card>
-    // <form>
-    //   <label htmlFor="username">
-    //     Username
-    //   </label>
-    //   <input type="text"></input>
-    // </form>
   );
 }
