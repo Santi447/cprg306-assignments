@@ -4,6 +4,7 @@ import  Link  from "next/link";
 import { useUserAuth } from "../context/AuthContext";
 import { useState } from "react";
 import {useRouter} from "next/navigation";
+import LoginForm from "../components/LoginForm";
  
 // Use the useUserAuth hook to get the user object and the login and logout functions
 // const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
@@ -27,7 +28,7 @@ async function handleLogin() {
   try{
        await gitHubSignIn();
        setsuccess(true);
-       router.push("/week-9/shopping-list");
+      //  router.push("/week-9/shopping-list");
 
   }
   catch(error){
@@ -66,6 +67,9 @@ if (!user){
     <button disabled={loading} onClick={handleLogin} className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md">
       {loading ? "Signing in..." : "Github"}
     </button>
+    <section>
+      <LoginForm />
+    </section>
     </div>
   )
 }
