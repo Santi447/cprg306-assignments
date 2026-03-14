@@ -3,6 +3,9 @@ import ItemList from "./item-list";
 import NewItem from "./newItem";
  import MealIdeas from "./mealIdeas";
 import itemsData from "./item.json";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import LogoutButton from "@/app/components/LogoutButton";
 import { useState } from "react";
 import { useUserAuth } from "../../context/AuthContext";
 
@@ -25,13 +28,19 @@ export default function Page(){
   if (!user){
     return(
       <div className="bg-slate-950 min-h-screen flex flex-col items-center justify-center">
-        <h1 className="text-4xl text-center text-white py-10">Please log in to view your shopping list</h1>
+        <p>
+          logging Out...
+        </p>
+        <Link href="/week-9" className="text-blue-600 hover:text-blue-300">
+          Back to Login
+        </Link>
       </div>
     )
   }
   return(
     <main className='bg-slate-950 min-h-screen'>
     <h1 className='text-4xl text-center text-white py-10'>Shopping List</h1>
+    <LogoutButton />
     <div className="flex flex-row justify-center">
       <div className = "flex flex-col items-center">
       <NewItem onAddItem={handleAddItem} />

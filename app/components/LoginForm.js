@@ -18,9 +18,10 @@ export default function LoginForm(){
   const [success, setsuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  async function handleLogin() {
+  async function handleLogin(event) {
   setLoading(true);
   setsuccess(false);
+  event.preventDefault();
   try{
        await gitHubSignIn();
        setsuccess(true);
@@ -36,6 +37,7 @@ export default function LoginForm(){
     setLoading(false);
   }
 }
+if (!user){
   return(
     <Card className="w-full max-w-sm text-white">
       <CardHeader>
@@ -48,7 +50,7 @@ export default function LoginForm(){
         </CardAction>
       </CardHeader>
       <CardContent>
-        <form>
+        <form id="login-form" >
           <div className="flex flex-col gap-6">
           <div className="grid gap-2">
           <label htmlFor="email" className="text-white">
@@ -75,16 +77,17 @@ export default function LoginForm(){
           className="text-white"
           required
            />
-          </div>          
+          </div>        
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <button className="bg-white text-black w-full border rounded-md hover:bg-gray-500">Login</button>
+        <button form="login-form" type="submit" className="bg-white text-black w-full border rounded-md hover:bg-gray-500">Login</button>
         {error && <div className="text-white"> {error.message}</div>}
         {success && <div className="text-white"> Signed in successfully</div>}
-        <button disabled={loading} onClick={handleLogin} className="text-white w-full border rounded-md hover:bg-gray-600">{loading? "Logging in..." : "Login with Github"} </button>
+        <button disabled={loading} onClick={handleLogin} className="text-white w-full border rounded-md hover:bg-gray-600" type="submit">{loading? "Logging in..." : "Login with Github"} </button>
       </CardFooter>
     </Card>
   );
+}
 }
