@@ -2,6 +2,7 @@
 import  Link  from "next/link";
 // Import the useUserAuth hook
 import { useUserAuth } from "../context/AuthContext";
+import { useState } from "react";
  
 // Use the useUserAuth hook to get the user object and the login and logout functions
 // const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
@@ -15,23 +16,40 @@ import { useUserAuth } from "../context/AuthContext";
 // Display some of the user's information
 export default function Page(){
 const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
+const [success, setsuccess] = useState(false);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
 async function handleLogin() {
+  setLoading(true);
+  setsuccess(false);
   try{
-       const response = await gitHubSignIn();
+       await gitHubSignIn();
+       setsuccess(true);
 
   }
   catch(error){
-
+      setError(error);
+      setsuccess(false);
+      
+  }
+  finally{
+    setLoading(false);
   }
 }
  
 // Sign out of Firebase
 async function handleLogout() {
+  setLoading(true);
   try{
-  const response = await firebaseSignOut();
+  await firebaseSignOut();
+  setsuccess(false);
+  setLoading(false );
+
   }
   catch(error){
-
+  setError(error);
+  setsuccess(false);
+  setLoading(false);
   }
 }
 if (!user){
@@ -40,8 +58,10 @@ if (!user){
     <p className="text-white">
       not logged in yet
     </p>
-    <button onClick={handleLogin} className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md">
-      Login with GitHub
+    {error && <div className="text-white"> error.message</div>}
+    {success && <div className="text-white"> Signed in successfully</div>}
+    <button disabled={loading} onClick={handleLogin} className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md">
+      {loading ? "Signing in..." : "Github"}
     </button>
     </div>
   )
@@ -52,7 +72,7 @@ return (
       <h1 className="text-white">Welcome to Week 9</h1>
     </header>
     <section>
-    <p>
+    <p className="text-white">
       Welcome, {user.displayName} ({user.email})
     </p>
     <button onClick={handleLogout} className="bg-red-600 text-white hover:bg-red-700 px-4 py-2 rounded-md">
