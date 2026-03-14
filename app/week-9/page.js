@@ -3,6 +3,7 @@ import  Link  from "next/link";
 // Import the useUserAuth hook
 import { useUserAuth } from "../context/AuthContext";
 import { useState } from "react";
+import {useRouter} from "next/navigation";
  
 // Use the useUserAuth hook to get the user object and the login and logout functions
 // const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
@@ -15,6 +16,7 @@ import { useState } from "react";
  
 // Display some of the user's information
 export default function Page(){
+const router = useRouter();
 const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 const [success, setsuccess] = useState(false);
 const [loading, setLoading] = useState(false);
@@ -25,6 +27,7 @@ async function handleLogin() {
   try{
        await gitHubSignIn();
        setsuccess(true);
+       router.push("/week-9/shopping-list");
 
   }
   catch(error){
