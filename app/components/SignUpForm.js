@@ -26,6 +26,7 @@ export default function SignUpForm(){
     const password = event.target.password.value;
     await signUpWithEmailAndPassword(email, password);
     setsuccess(true);
+    router.push("../week-9/shopping-list")
     }
     catch(error){
         console.log(error.message);

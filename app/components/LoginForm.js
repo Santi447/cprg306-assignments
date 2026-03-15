@@ -99,7 +99,7 @@ export default function LoginForm(){
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        {error && <div className="text-white"> {error}</div>}
+        {error && <div className="text-white"> {error.message}</div>}
         {success && <div className="text-white"> Signed in successfully</div>}
         <button form="login-form" type="submit" className="bg-white text-black w-full border rounded-md hover:bg-gray-500">{loading ? "logging in..." : "Login"}</button>
         <button disabled={loading} onClick={handleGitHubLogin} className="text-white w-full border rounded-md hover:bg-gray-600" type="submit">{loading? "Logging in..." : "Login with Github"} </button>

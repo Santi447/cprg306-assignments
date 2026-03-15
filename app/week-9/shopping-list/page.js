@@ -40,7 +40,10 @@ export default function Page(){
   return(
     <main className='bg-slate-950 min-h-screen'>
     <h1 className='text-4xl text-center text-white py-10'>Shopping List</h1>
-    <LogoutButton />
+    <h3 className='text-xl text-center text-white py-5'>Welcome, {user.email}!</h3>
+    <div className="flex justify-center items-center p-4">
+      <LogoutButton />
+    </div>
     <div className="flex flex-row justify-center">
       <div className = "flex flex-col items-center">
       <NewItem onAddItem={handleAddItem} />

@@ -1,4 +1,8 @@
 import SignUpForm  from "@/app/components/SignUpForm"
 export default function Page(){
-    return(<SignUpForm/>)
+    return(
+    <div className="flex items-center justify-center min-h-screen bg-slate-950">
+    <SignUpForm/>
+    </div>
+    )
 }
