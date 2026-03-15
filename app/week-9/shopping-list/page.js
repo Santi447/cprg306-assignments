@@ -31,7 +31,7 @@ export default function Page(){
         <p>
           logging Out...
         </p>
-        <Link href="/week-9" className="text-blue-600 hover:text-blue-300">
+        <Link href="/week-9/login" className="text-blue-600 hover:text-blue-300">
           Back to Login
         </Link>
       </div>
