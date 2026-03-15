@@ -18,7 +18,7 @@ export default function LoginForm(){
   const [success, setsuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  async function handleLogin(event) {
+  async function handleGitHubLogin(event) {
   setLoading(true);
   setsuccess(false);
   event.preventDefault();
@@ -84,7 +84,7 @@ export default function LoginForm(){
         <button form="login-form" type="submit" className="bg-white text-black w-full border rounded-md hover:bg-gray-500">Login</button>
         {error && <div className="text-white"> {error.message}</div>}
         {success && <div className="text-white"> Signed in successfully</div>}
-        <button disabled={loading} onClick={handleLogin} className="text-white w-full border rounded-md hover:bg-gray-600" type="submit">{loading? "Logging in..." : "Login with Github"} </button>
+        <button disabled={loading} onClick={handleGitHubLogin} className="text-white w-full border rounded-md hover:bg-gray-600" type="submit">{loading? "Logging in..." : "Login with Github"} </button>
       </CardFooter>
     </Card>
   );

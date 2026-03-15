@@ -3,6 +3,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import {
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   onAuthStateChanged,
@@ -14,6 +15,11 @@ const AuthContext = createContext();
  
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+
+  function signinginWithEmailAndPassword(email, password){
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
   function signUpWithEmailAndPassword(email, password){
     return createUserWithEmailAndPassword(auth, email, password);
   } 
@@ -34,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [user]);
  
   return (
-    <AuthContext.Provider value={{ user, gitHubSignIn, firebaseSignOut, signUpWithEmailAndPassword }}>
+    <AuthContext.Provider value={{ user, gitHubSignIn, firebaseSignOut, signUpWithEmailAndPassword, signinginWithEmailAndPassword }}>
       {children}
     </AuthContext.Provider>
   );
