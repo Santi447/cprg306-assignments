@@ -14,14 +14,32 @@ import {useRouter} from "next/navigation";
 
 export default function LoginForm(){
   const router = useRouter();
-  const { user, gitHubSignIn,} = useUserAuth();
+  const { user, gitHubSignIn, signinginWithEmailAndPassword} = useUserAuth();
   const [success, setsuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  async function handleLoginWithEmailAndPassword(event) {
+    event.preventDefault();
+    try {
+      setLoading(true);
+      setsuccess(false);
+      const email = event.target.email.value;
+      const password = event.target.password.value;
+      await signinginWithEmailAndPassword(email,password);
+      setsuccess(true);
+      router.push("/week-9/shopping-list");
+    } catch (error) {
+      console.log(error.message);
+      setError(error)
+    }
+    finally{
+      setLoading(false);
+    }
+  }
   async function handleGitHubLogin(event) {
+  event.preventDefault();
   setLoading(true);
   setsuccess(false);
-  event.preventDefault();
   try{
        await gitHubSignIn();
        setsuccess(true);
@@ -49,7 +67,7 @@ export default function LoginForm(){
         </CardAction>
       </CardHeader>
       <CardContent>
-        <form id="login-form" >
+        <form id="login-form" onSubmit={handleLoginWithEmailAndPassword} >
           <div className="flex flex-col gap-6">
           <div className="grid gap-2">
           <label htmlFor="email" className="text-white">
@@ -81,9 +99,9 @@ export default function LoginForm(){
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <button form="login-form" type="submit" className="bg-white text-black w-full border rounded-md hover:bg-gray-500">Login</button>
-        {error && <div className="text-white"> {error.message}</div>}
+        {error && <div className="text-white"> {error}</div>}
         {success && <div className="text-white"> Signed in successfully</div>}
+        <button form="login-form" type="submit" className="bg-white text-black w-full border rounded-md hover:bg-gray-500">{loading ? "logging in..." : "Login"}</button>
         <button disabled={loading} onClick={handleGitHubLogin} className="text-white w-full border rounded-md hover:bg-gray-600" type="submit">{loading? "Logging in..." : "Login with Github"} </button>
       </CardFooter>
     </Card>
