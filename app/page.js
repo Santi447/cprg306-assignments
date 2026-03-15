@@ -64,7 +64,7 @@ export default function Home() {
       </li>  
         <li className="my-2 bg-stone-300 dark:bg-stone-600 p-4 rounded-xl">
         <p>
-        <Link href="week-9"
+        <Link href="/week-9/login"
               className="hover:text-blue-600 dark:hover:text-blue-300  duration-300 ease-linear">
         Go to Week 9
         </Link>

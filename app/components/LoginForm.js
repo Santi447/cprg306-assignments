@@ -37,7 +37,6 @@ export default function LoginForm(){
     setLoading(false);
   }
 }
-if (!user){
   return(
     <Card className="w-full max-w-sm text-white">
       <CardHeader>
@@ -89,5 +88,4 @@ if (!user){
       </CardFooter>
     </Card>
   );
-}
 }

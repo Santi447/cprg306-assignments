@@ -2,6 +2,7 @@
  
 import { useContext, createContext, useState, useEffect } from "react";
 import {
+  createUserWithEmailAndPassword,
   signInWithPopup,
   signOut,
   onAuthStateChanged,
@@ -13,7 +14,9 @@ const AuthContext = createContext();
  
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
- 
+  function signUpWithEmailAndPassword(email, password){
+    return createUserWithEmailAndPassword(auth, email, password);
+  } 
   const gitHubSignIn = () => {
     const provider = new GithubAuthProvider();
     return signInWithPopup(auth, provider);
@@ -31,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [user]);
  
   return (
-    <AuthContext.Provider value={{ user, gitHubSignIn, firebaseSignOut }}>
+    <AuthContext.Provider value={{ user, gitHubSignIn, firebaseSignOut, signUpWithEmailAndPassword }}>
       {children}
     </AuthContext.Provider>
   );
