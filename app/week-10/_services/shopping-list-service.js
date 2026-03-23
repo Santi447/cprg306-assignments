@@ -8,7 +8,7 @@ async function getUserRefDoc(userId){
     try{
         const userCollection = collection(db, "Users");
         console.log("Querying for userId:", userId);
-        const queryCollection = query(userCollection,where("userId", "==", userId)); 
+        const queryCollection = query(userCollection); 
         const userIdquerySnapshot = await getDocs(queryCollection);
         console.log("Query result empty?", userIdquerySnapshot.empty);
         console.log("Docs:", userIdquerySnapshot.docs.map(doc => doc.data()));
@@ -25,7 +25,7 @@ export async function getItems(userId){
 
       const userIdquerySnapshot = await getUserRefDoc(userId);
         if (!userIdquerySnapshot || userIdquerySnapshot.empty) {
-          console.log("No user found with userId:", userId);
+          console.log("No user found with userId:",userId);
           return [];
         }
       const userDoc = userIdquerySnapshot.docs[0];
