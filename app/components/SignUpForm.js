@@ -11,7 +11,7 @@ import {
 import { useUserAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-export default function SignUpForm(){
+export default function SignUpForm(url){
   const router = useRouter();
   const { user, signUpWithEmailAndPassword} = useUserAuth();
   const [success, setsuccess] = useState(false);
@@ -26,7 +26,7 @@ export default function SignUpForm(){
     const password = event.target.password.value;
     await signUpWithEmailAndPassword(email, password);
     setsuccess(true);
-    router.push("../week-9/shopping-list")
+    router.push(url ? url : null);
     }
     catch(error){
         console.log(error.message);

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card"
 import {useRouter} from "next/navigation";
 
-export default function LoginForm(){
+export default function LoginForm({url}){
   const router = useRouter();
   const { user, gitHubSignIn, signinginWithEmailAndPassword} = useUserAuth();
   const [success, setsuccess] = useState(false);
@@ -27,7 +27,7 @@ export default function LoginForm(){
       const password = event.target.password.value;
       await signinginWithEmailAndPassword(email,password);
       setsuccess(true);
-      router.push("/week-9/shopping-list");
+      router.push(url ? url : null);
     } catch (error) {
       console.log(error.message);
       setError(error)
@@ -43,7 +43,7 @@ export default function LoginForm(){
   try{
        await gitHubSignIn();
        setsuccess(true);
-       router.push("/week-9/shopping-list");
+       router.push(url ? url : "/");
 
   }
   catch(error){
