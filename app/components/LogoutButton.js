@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useUserAuth } from "../context/AuthContext";
 import { useRouter} from "next/navigation";
-export default function LogoutButton(url) {
+export default function LogoutButton({url}) {
   const router = useRouter();
   const { user, firebaseSignOut } = useUserAuth();
   const [success, setsuccess] = useState(false);
@@ -13,7 +13,7 @@ export default function LogoutButton(url) {
       await firebaseSignOut();
       setsuccess(false);
       setLoading(false);
-      router.push(url ? url : "");
+      router.push(url ? url : "/");
     } catch (error) {
       setError(error);
       setsuccess(false);
