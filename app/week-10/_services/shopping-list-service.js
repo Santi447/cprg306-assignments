@@ -1,24 +1,32 @@
-
-import { use } from "react";
 import { db } from "../../utils/firebase";
-import { collection, getDocs, addDoc, query,where } from "firebase/firestore";
+import { collection, getDocs, addDoc, query,where, doc, deleteDoc,setDoc } from "firebase/firestore";
 
 
-async function getUserRefDoc(userId){
-    try{
-        const userCollection = collection(db, "Users");
-        console.log("Querying for userId:", userId);
         const queryCollection = query(userCollection, where("userId", "==", userId)); 
-        const userIdquerySnapshot = await getDocs(queryCollection);
-        console.log("Query result empty?", userIdquerySnapshot.empty);
-        console.log("Docs:", userIdquerySnapshot.docs.map(doc => doc.data()));
-        console.log(typeof userId);
-        return userIdquerySnapshot;
+async function getUserRefDoc(userId) {
+  try {
+    const userCollection = collection(db, "Users");
+    console.log("Querying for userId:", userId);
+    const queryCollection = query(
+      userCollection,
+      where("userId", "==", userId),
+    );
+    const userIdquerySnapshot = await getDocs(queryCollection);
+
+    if (userIdquerySnapshot.empty) {
+      // Create a new user document with userId
+      const newUserDocRef = doc(userCollection); // auto-generate doc id
+      await setDoc(newUserDocRef, { userId });
+      // Return a new snapshot with the created doc
+      return await getDocs(
+        query(userCollection, where("userId", "==", userId)),
+      );
     }
-    catch(error){
-        console.log("Error in getUserRefDoc:", error.message);
-        return null;
-    }
+    return userIdquerySnapshot;
+  } catch (error) {
+    console.log("Error in getUserRefDoc:", error.message);
+    return null;
+  }
 }
 export async function getItems(userId){
     try{
@@ -44,10 +52,30 @@ export async function addItem(userId, Item){
         const userDoc = userIdquerySnapshot.docs[0];
         const itemsRef = collection(db,"Users",userDoc.id, "items");
         const item = await addDoc(itemsRef, Item);
-        return item.id;
+        return item.id
     }
     catch(error){
         console.log("Error in addItem:", error.message);
         return null;
     }
 }
+export  async function deleteItem(userId, item) {
+  try {
+    const userSnapshot = await getUserRefDoc(userId);
+
+    if (!userSnapshot || userSnapshot.empty) {
+      console.log("No user found with userId:", userId);
+      return false;
+    }
+
+    const userDoc = userSnapshot.docs[0];
+    const itemRef = doc(db, "Users", userDoc.id, "items", item.id.trim());
+
+    await deleteDoc(itemRef);
+    return true;
+  } catch (error) {
+    console.log("error in the delete function", error.message);
+    return false;
+  }
+}
+

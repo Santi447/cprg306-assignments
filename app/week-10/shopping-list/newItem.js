@@ -39,9 +39,9 @@ export default function NewItem({ onAddItem }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const id = Math.random().toString(36).substring(2, 9);
-    const newItem = { ...item, id };
-    onAddItem(newItem);
+    // const id = Math.random().toString(36).substring(2, 9);
+    // const newItem = { ...item, id };
+    onAddItem(item);
     const initialState = {
       name: "",
       quantity: 1,
