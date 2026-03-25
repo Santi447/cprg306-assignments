@@ -1,26 +1,15 @@
 "use client";
 import Item from "./itemsComponent";
-// import jsonItems from "./item.json";
 import { useState } from "react";
-import { getItems } from "@/app/week-10/_services/shopping-list-service";
 import { useUserAuth } from "../../context/AuthContext";
-import { useEffect } from "react";
+
 import {useFirestoreCollection} from "../../../hooks/useFirestoreCollection";
 
 export default function ItemList({ onItemSelect }) {
   const { user } = useUserAuth();
   const [sortBy, setSortBy] = useState("name");
-  // const [items, setItems] = useState([]);
   const {data: items, loading, error} = useFirestoreCollection("items", user.uid);
-  // async function loadItems() {
-  //   try {
-  //     const itemsArray = await getItems(user.uid);
-  //     setItems(itemsArray);
-  //   } catch (error) {
-  //     console.log("Error loading items:", error);
-  //     return [];
-  //   }
-  // }
+
   const sortedItems = [...items].sort((currentItem, nextItem) => {
     if (sortBy === "name") {
       return currentItem.name.localeCompare(nextItem.name);
@@ -28,11 +17,6 @@ export default function ItemList({ onItemSelect }) {
       return currentItem.category.localeCompare(nextItem.category);
     }
   });
-  // useEffect(() => {
-  //   if (user) {
-  //     loadItems();
-  //   }
-  // }, [user]);
   if (loading) {
     return <p>Loading items...</p>;
   }

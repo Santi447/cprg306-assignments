@@ -1,7 +1,6 @@
 "use client";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -9,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useState } from "react";
-import Item from "./itemsComponent";
 
 const CATEGORIES = [
   "Produce",
@@ -26,10 +24,6 @@ const CATEGORIES = [
 ];
 
 export default function NewItem({ onAddItem }) {
-  // const [name, setName] = useState("");
-  // const [quantity, setQuantity] =useState(1);
-  // const [category, setCategory] = useState("produce");
-  // const [imageUrl, setImageUrl]= useState("");
   const [item, setItem] = useState({
     name: "",
     quantity: 1,
@@ -39,8 +33,6 @@ export default function NewItem({ onAddItem }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // const id = Math.random().toString(36).substring(2, 9);
-    // const newItem = { ...item, id };
     onAddItem(item);
     const initialState = {
       name: "",
@@ -49,11 +41,6 @@ export default function NewItem({ onAddItem }) {
       imageUrl: "",
     };
     setItem(initialState);
-    // console.log(item);
-    // alert(`added:${name}\nquantity: ${quantity}\ncategory: ${category}`);
-    // setName("");
-    // setQuantity(1);
-    // setCategory("produce");
   }
 
   const handleChange = (e) => {
