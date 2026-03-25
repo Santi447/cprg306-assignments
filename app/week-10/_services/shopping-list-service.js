@@ -2,7 +2,6 @@ import { db } from "../../utils/firebase";
 import { collection, getDocs, addDoc, query,where, doc, deleteDoc,setDoc } from "firebase/firestore";
 
 
-        const queryCollection = query(userCollection, where("userId", "==", userId)); 
 async function getUserRefDoc(userId) {
   try {
     const userCollection = collection(db, "Users");
