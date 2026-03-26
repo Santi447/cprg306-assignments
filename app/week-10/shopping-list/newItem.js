@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { useState } from "react";
 
+
 const CATEGORIES = [
   "Produce",
   "Dairy",
@@ -65,7 +66,7 @@ export default function NewItem({ onAddItem }) {
             htmlFor="name"
             className="mb-2.5 text-sm font-medium text-heading text-white"
           >
-            {" "}
+            
             Enter name
             <input
               name="name"
@@ -83,7 +84,7 @@ export default function NewItem({ onAddItem }) {
               htmlFor="quantity"
               className="text-sm font-medium text-heading text-white"
             >
-              {" "}
+            
               Enter quantity
               <input
                 name="quantity"
@@ -99,7 +100,7 @@ export default function NewItem({ onAddItem }) {
               htmlFor="category"
               className="text-sm font-medium text-heading text-white"
             >
-              {" "}
+              
               Enter category:
               <select
                 value={item.category}
@@ -140,7 +141,7 @@ export default function NewItem({ onAddItem }) {
           className=" bg-blue-600 p-5 w-full rounded-md text-white hover:bg-blue-400 active:bg-blue-800"
         >
           Add Grocery Items
-        </button>
+        </button>  
       </CardFooter>
     </Card>
   );

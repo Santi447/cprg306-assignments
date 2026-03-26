@@ -4,7 +4,6 @@ import NewItem from "./newItem";
 import MealIdeas from "./mealIdeas";
 import itemsData from "./item.json";
 import Link from "next/link";
-``;
 import LogoutButton from "@/app/components/LogoutButton";
 import { useState } from "react";
 import { useUserAuth } from "../../context/AuthContext";

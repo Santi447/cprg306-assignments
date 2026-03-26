@@ -2,14 +2,12 @@
 import ItemList from "./item-list";
 import NewItem from "./newItem";
 import MealIdeas from "./mealIdeas";
-// import itemsData from "./item.json";
 import Link from "next/link";
 import {
-  getItems,
   addItem,
 } from "@/app/week-10/_services/shopping-list-service";
 import LogoutButton from "@/app/components/LogoutButton";
-import { useState, useEffect } from "react";
+import { useState, } from "react";
 import { useUserAuth } from "../../context/AuthContext";
 import DeleteButton from "@/app/components/DeleteButton";
 
@@ -52,7 +50,7 @@ export default function Page() {
     <main className="bg-slate-950 min-h-screen">
       <h1 className="text-4xl text-center text-white py-10">Shopping List</h1>
       <h3 className="text-xl text-center text-white py-5">
-        Welcome,{" "}
+        Welcome,
         {user.displayName ? `${user.displayName} (${user.email})` : user.email}!
       </h3>
       <div className="flex justify-center items-center p-4">
