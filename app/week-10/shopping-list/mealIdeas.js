@@ -2,15 +2,10 @@
 import {useState, useEffect} from "react";
 import {
   Card,
-  CardAction,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import { Badge } from "@/components/ui/badge"
-// import { Button } from "@/components/ui/button"
-
  async function fetchMealIdeas(ingredient) {
   try{
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);

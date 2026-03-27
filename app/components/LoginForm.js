@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card"
 import {useRouter} from "next/navigation";
 
-export default function LoginForm({url}){
+export default function LoginForm({url, signupUrl}){
   const router = useRouter();
   const { user, gitHubSignIn, signinginWithEmailAndPassword} = useUserAuth();
   const [success, setsuccess] = useState(false);
@@ -63,7 +63,7 @@ export default function LoginForm({url}){
           Enter your email below to login to your account
         </CardDescription>
         <CardAction>
-          <button className="text-white" type="button" onClick={() =>router.push("../week-9/signup")}>Sign up</button>
+          <button className="text-white" type="button" onClick={() =>router.push(signupUrl)}>Sign up</button>
         </CardAction>
       </CardHeader>
       <CardContent>

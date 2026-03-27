@@ -11,7 +11,7 @@ import {
 import { useUserAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-export default function SignUpForm({url}){
+export default function SignUpForm({url, loginUrl}){
   const router = useRouter();
   const { user, signUpWithEmailAndPassword} = useUserAuth();
   const [success, setsuccess] = useState(false);
@@ -46,7 +46,7 @@ export default function SignUpForm({url}){
           Enter a email and a password to create your account
         </CardDescription>
         <CardAction>
-          <button className="text-white" type="button" onClick={() =>router.push("../week-9/login")}>Login</button>
+          <button className="text-white" type="button" onClick={() =>router.push(loginUrl)}>Login</button>
         </CardAction>
       </CardHeader>
       <CardContent>

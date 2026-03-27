@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { onSnapshot, collection, query, where } from "firebase/firestore";
 import { db } from "../app/utils/firebase";
 
-export function useFirestoreCollection(collectionName, userId) {
+export function useFirestoreCollection(collectionName = "items", userId) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,8 +25,7 @@ export function useFirestoreCollection(collectionName, userId) {
           return;
         }
         const userDoc = userSnapshot.docs[0];
-        // Step 2: Reference the items subcollection
-        const itemsRef = collection(db, "Users", userDoc.id, "items");
+        const itemsRef = collection(db, "Users", userDoc.id, collectionName);
 
         const unsubscribeItems = onSnapshot(
           itemsRef,

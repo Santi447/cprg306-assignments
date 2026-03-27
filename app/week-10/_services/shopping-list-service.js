@@ -5,7 +5,6 @@ import { collection, getDocs, addDoc, query,where, doc, deleteDoc,setDoc } from 
 async function getUserRefDoc(userId) {
   try {
     const userCollection = collection(db, "Users");
-    console.log("Querying for userId:", userId);
     const queryCollection = query(
       userCollection,
       where("userId", "==", userId),
@@ -13,10 +12,8 @@ async function getUserRefDoc(userId) {
     const userIdquerySnapshot = await getDocs(queryCollection);
 
     if (userIdquerySnapshot.empty) {
-      // Create a new user document with userId
-      const newUserDocRef = doc(userCollection); // auto-generate doc id
+      const newUserDocRef = doc(userCollection);
       await setDoc(newUserDocRef, { userId });
-      // Return a new snapshot with the created doc
       return await getDocs(
         query(userCollection, where("userId", "==", userId)),
       );

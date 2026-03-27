@@ -2,7 +2,7 @@ import SignUpForm  from "@/app/components/SignUpForm"
 export default function Page(){
     return(
     <div className="flex items-center justify-center min-h-screen bg-slate-950">
-    <SignUpForm url="/week-9/signup"/>
+    <SignUpForm url="/week-9/signup" loginUrl="/week-9/login"/>
     </div>
     )
 }
