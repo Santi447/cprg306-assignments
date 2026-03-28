@@ -2,28 +2,6 @@ import { db } from "../../utils/firebase";
 import { collection, getDocs, addDoc, query,where, doc, deleteDoc,setDoc } from "firebase/firestore";
 
 
-async function getUserRefDoc(userId) {
-  try {
-    const userCollection = collection(db, "Users");
-    const queryCollection = query(
-      userCollection,
-      where("userId", "==", userId),
-    );
-    const userIdquerySnapshot = await getDocs(queryCollection);
-
-    if (userIdquerySnapshot.empty) {
-      const newUserDocRef = doc(userCollection);
-      await setDoc(newUserDocRef, { userId });
-      return await getDocs(
-        query(userCollection, where("userId", "==", userId)),
-      );
-    }
-    return userIdquerySnapshot;
-  } catch (error) {
-    console.log("Error in getUserRefDoc:", error.message);
-    return null;
-  }
-}
 export async function getItems(userId){
     try{
       const userIdquerySnapshot = await getUserRefDoc(userId);
