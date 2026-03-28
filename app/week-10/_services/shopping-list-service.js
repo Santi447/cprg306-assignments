@@ -22,9 +22,8 @@ export async function getItems(userId){
 }
 export async function addItem(userId, Item){
     try{
-        const userIdquerySnapshot = await getUserRefDoc(userId);
-        const userDoc = userIdquerySnapshot.docs[0];
-        const itemsRef = collection(db,"Users",userDoc.id, "items");
+
+        const itemsRef = collection(db,"Users",userId, "items");
         const item = await addDoc(itemsRef, Item);
         return item.id
     }
