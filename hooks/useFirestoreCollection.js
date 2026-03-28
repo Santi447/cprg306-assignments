@@ -14,47 +14,28 @@ export function useFirestoreCollection(collectionName = "items", userId) {
       setLoading(false);
       return;
     }
-    const usersRef = collection(db, "Users");
-    const userQuery = query(usersRef, where("userId", "==", userId));
-    const unsubscribeUser = onSnapshot(
-      userQuery,
-      (userSnapshot) => {
-        if (userSnapshot.empty) {
-          setData([]);
-          setLoading(false);
-          return;
-        }
-        const userDoc = userSnapshot.docs[0];
-        const itemsRef = collection(db, "Users", userDoc.id, collectionName);
+    const itemsRef = collection(db, "Users", userId, collectionName);
 
-        const unsubscribeItems = onSnapshot(
-          itemsRef,
-          (onSnapshot) => {
-            const items = onSnapshot.docs.map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
-            }));
-            setData(items);
-            setLoading(false);
-            setError(null);
-          },
-          (error) => {
-            console.log("Error fetching data:", error);
-            setError(error);
-            setLoading(false);
-          },
-        );
-
-        return () => unsubscribeItems();
+    const unsubscribe = onSnapshot(
+      itemsRef,
+      (snapshot) => {
+        const items = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setData(items);
+        setLoading(false);
+        setError(null);
       },
       (error) => {
-        console.log("Error fetching user document:", error);
+        console.log("Error fetching data:", error);
         setError(error);
         setLoading(false);
-      },
+      }
     );
-    return () => unsubscribeUser();
-  }, [userId]);
+
+    return () => unsubscribe();
+  }, [userId, collectionName]);
 
   return { data, loading, error };
 }
