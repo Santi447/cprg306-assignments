@@ -9,7 +9,9 @@ import {
   onAuthStateChanged,
   GithubAuthProvider,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../utils/firebase";
+
 
 const AuthContext = createContext();
 
@@ -20,12 +22,26 @@ export const AuthContextProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  function signUpWithEmailAndPassword(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+  async function signUpWithEmailAndPassword(email, password) {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userDocRef = doc(db, "Users", userCredential.user.uid);
+
+    await setDoc(userDocRef, {
+      userId: userCredential.user.uid,
+    });
+
+    return userCredential;
   }
-  const gitHubSignIn = () => {
+  const gitHubSignIn = async () => {
     const provider = new GithubAuthProvider();
-    return signInWithPopup(auth, provider);
+    const userCredential = await signInWithPopup(auth, provider);
+    const userDocRef = doc(db, "Users", userCredential.user.uid);
+
+    await setDoc(userDocRef, {
+      userId: userCredential.user.uid,
+    });
+
+    return userCredential;
   };
 
   const firebaseSignOut = () => {
