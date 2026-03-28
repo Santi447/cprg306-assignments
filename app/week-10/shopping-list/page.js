@@ -66,9 +66,7 @@ export default function Page() {
         </div>
         {selectedItemName && (
           <div>
-            <h2 className="text-2xl text-center text-white py-10">
-              Meal Ideas
-            </h2>
+
             <MealIdeas ingredient={selectedItemName} />
           </div>
         )}

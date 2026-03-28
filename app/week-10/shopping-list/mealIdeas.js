@@ -36,7 +36,6 @@ export default function MealIdeas({ingredient}) {
 
   return(
     <div>
-      <h2>Meal Ideas</h2>
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {mealIdeas.map(meal =>(
           <li key={meal.idMeal} className="text-white m-4">

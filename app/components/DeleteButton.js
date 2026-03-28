@@ -6,7 +6,6 @@ export default function DeleteButton({userId, item}){
         const [success, setsuccess] = useState(false);    
     async function handleDelete(){
         try{
-            console.log("Attempting to delete item:", item);
             setLoading(true);
             await deleteItem(userId, item);
             setError(null);
@@ -24,7 +23,7 @@ export default function DeleteButton({userId, item}){
     return(
     <div>
     {error && <div className="text-white"> {error.message}</div>}
-    {success && <div className="text-white"> Item deleted successfully</div>}
+    {success && loading && <div className="text-white"> Item deleted successfully</div>}
     <button
       onClick={handleDelete}
       className="bg-red-600 text-white hover:bg-red-700 px-4 py-2 rounded-md"
