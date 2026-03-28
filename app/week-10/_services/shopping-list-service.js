@@ -35,15 +35,8 @@ export async function addItem(userId, Item){
 }
 export  async function deleteItem(userId, item) {
   try {
-    const userSnapshot = await getUserRefDoc(userId);
 
-    if (!userSnapshot || userSnapshot.empty) {
-      console.log("No user found with userId:", userId);
-      return false;
-    }
-
-    const userDoc = userSnapshot.docs[0];
-    const itemRef = doc(db, "Users", userDoc.id, "items", item.id.trim());
+    const itemRef = doc(db, "Users", userId, "items", item.id.trim());
 
     await deleteDoc(itemRef);
     return true;
